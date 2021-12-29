@@ -4,7 +4,7 @@ const {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
-  GrahpQLID,
+  GraphQLID,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInt,
@@ -17,12 +17,12 @@ const { deleteNoteTag } = require("../services/noteTagsService");
 const patchNoteType = new GraphQLObjectType({
   name: "PatchNotes",
   fields: () => ({
-    _id: { type: GrahpQLID },
+    _id: { type: GraphQLID },
     title: { type: GraphQLString },
-    description: { type: GraphQLString },
+    detail: { type: GraphQLString },
     patchName: { type: GraphQLString },
     createdAt: { type: GraphQLString },
-    tagId: { type: GrahpQLID },
+    tagId: { type: GraphQLID },
     tag: {
       type: noteTagType,
       async resolve(parent, args) {
@@ -35,7 +35,7 @@ const patchNoteType = new GraphQLObjectType({
 const noteTagType = new GraphQLObjectType({
   name: "NoteTags",
   fields: () => ({
-    _id: { type: GrahpQLID },
+    _id: { type: GraphQLID },
     name: { type: GraphQLString },
     color: { type: GraphQLString },
     createdAt: { type: GraphQLString },
@@ -87,9 +87,9 @@ const Mutations = new GraphQLObjectType({
             type: patchNoteType,
             args: {
                 title: { type: new GraphQLNonNull(GraphQLString) },
-                description: { type: new GraphQLNonNull(GraphQLString) },
+                detail: { type: new GraphQLNonNull(GraphQLString) },
                 patchName: { type: new GraphQLNonNull(GraphQLString) },
-                tagId: { type: GrahpQLID },
+                tagId: { type: GraphQLID },
             },
             async resolve(parent, args) {
                 return await patchNoteController._add(args)
@@ -98,11 +98,11 @@ const Mutations = new GraphQLObjectType({
         updatePatchNote: {
             type: patchNoteType,
             args: {
-                id: { type: new GraphQLNonNull(GrahpQLID) },
+                id: { type: new GraphQLNonNull(GraphQLID) },
                 title: { type: new GraphQLNonNull(GraphQLString) },
-                description: { type: new GraphQLNonNull(GraphQLString) },
+                detail: { type: new GraphQLNonNull(GraphQLString) },
                 patchName: { type: new GraphQLNonNull(GraphQLString) },
-                tagId: { type: GrahpQLID },
+                tagId: { type: GraphQLID },
             },
             async resolve(parent, args) {
                 return await patchNoteController._update(args)
@@ -111,7 +111,7 @@ const Mutations = new GraphQLObjectType({
         deletePatchNote: {
             type: patchNoteType,
             args: {
-                id: { type: new GraphQLNonNull(GrahpQLID) },
+                id: { type: new GraphQLNonNull(GraphQLID) },
             },
             async resolve(parent, args) {
                 return await patchNoteController._delete(args)
@@ -130,7 +130,7 @@ const Mutations = new GraphQLObjectType({
         updateNoteTag: {
             type: noteTagType,
             args: {
-                id: { type: new GraphQLNonNull(GrahpQLID) },
+                id: { type: new GraphQLNonNull(GraphQLID) },
                 name: { type: new GraphQLNonNull(GraphQLString) },
                 color: { type: new GraphQLNonNull(GraphQLString) },
             },
@@ -139,9 +139,9 @@ const Mutations = new GraphQLObjectType({
             }
         },
         deleteNoteTag: {
-            type: deleteNoteTag,
+            type: noteTagType,
             args: {
-                id: { type: new GraphQLNonNull(GrahpQLID) },
+                id: { type: new GraphQLNonNull(GraphQLID) },
             },
             async resolve(parent, args) {
                 return await noteTagsController._delete(args)

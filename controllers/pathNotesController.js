@@ -1,9 +1,9 @@
 const PatchNotesService = require("../services/patchNotesService");
 const boom = require("boom");
 
-const _gets = (async) => {
+const _gets = async () => {
   try {
-    const notes = await PatchNotesService.getPatchNote();
+    const notes = await PatchNotesService.getPatchNotes();
     return notes;
   } catch (error) {
     throw boom.boomify(error);
@@ -13,7 +13,7 @@ const _gets = (async) => {
 const _get = async (req) => {
   try {
     const id = req.params === undefined ? req.id : req.params.id;
-    const note = await PatchNotesService.getPatchNotes(id);
+    const note = await PatchNotesService.getPatchNote(id);
     return note;
   } catch (error) {
     throw boom.boomify(error);

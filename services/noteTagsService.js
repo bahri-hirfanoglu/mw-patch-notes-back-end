@@ -6,22 +6,23 @@ const addNoteTag = async function (param) {
 }
 
 const getNoteTag = async function (id) {
-    const tag = NoteTags.findById(id)
+    const tag = await NoteTags.findById(id)
     return tag;
 }
 
 const getNoteTags = async function(){
-    const tags = NoteTags.find();
+    const tags = await NoteTags.find();
     return tags;
 }
 
 const deleteNoteTag = async function (id) {
-    const result = NoteTags.findByIdAndRemove(id)
+    const result = await NoteTags.findByIdAndRemove(id)
     return result;
 }
 
 const updateNoteTag = async function(id, param) {
-    const result = NoteTags.findByIdAndUpdate(id, param, {new: true})
+    const result = await NoteTags.findByIdAndUpdate(id, param, {new: true})
+    return result
 }
 
 module.exports = {

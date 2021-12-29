@@ -1,7 +1,7 @@
 const NoteTagsServices = require('../services/noteTagsService')
 const boom = require('boom')
 
-const _gets = (async) => {
+const _gets = async () => {
     try {
       const notes = await NoteTagsServices.getNoteTags();
       return notes;

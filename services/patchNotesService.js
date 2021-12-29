@@ -2,7 +2,7 @@ const PatchNotes = require("../models/patchNotes");
 
 const addPatchNote = async function (param) {
   const note = new PatchNotes(param);
-  return await _patchNotes.save();
+  return await note.save();
 };
 
 const getPatchNote = async function (id) {
