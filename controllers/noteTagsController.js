@@ -32,7 +32,8 @@ const _gets = (async) => {
   const _update = async (req) => {
     try {
       const id = req.params === undefined ? req.id : req.params.id;
-      const result = await NoteTagsServices.updateNoteTag(id, req);
+      const data =  req.params === undefined ? req : req.params
+      const result = await NoteTagsServices.updateNoteTag(id, data);
       return result;
     } catch (error) {
       throw boom.boomify(error);

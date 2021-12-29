@@ -20,6 +20,17 @@ const _get = async (req) => {
   }
 };
 
+const _getTag = async (req) => {
+  try {
+    const id = req.params === undefined ? req.id : req.params.id;
+    const note = await PatchNotesService.getTagNotes(id);
+    return note;
+  } catch (error) {
+    throw boom.boomify(error);
+  }
+};
+
+
 const _add = async (req) => {
   try {
     const result = await PatchNotesService.addPatchNote(req);
@@ -32,7 +43,8 @@ const _add = async (req) => {
 const _update = async (req) => {
   try {
     const id = req.params === undefined ? req.id : req.params.id;
-    const result = await PatchNotesService.updatePatch(id, req);
+    const data =  req.params === undefined ? req : req.params
+    const result = await PatchNotesService.updatePatch(id, data);
     return result;
   } catch (error) {
     throw boom.boomify(error);
@@ -52,6 +64,7 @@ const _delete = async (req) => {
 module.exports = {
     _get,
     _gets,
+    _getTag,
     _add,
     _update,
     _delete

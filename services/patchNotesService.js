@@ -10,6 +10,10 @@ const getPatchNote = async function (id) {
   return note;
 };
 
+const getTagNotes = async function (id) {
+  const notes = await PatchNotes.find({tagId: id})
+  return notes
+}
 const getPatchNotes = async function () {
   const notes = await PatchNotes.find();
   return notes;
@@ -30,5 +34,6 @@ module.exports = {
     getPatchNote,
     getPatchNotes,
     deletePatchNote,
-    updatePatch
+    updatePatch,
+    getTagNotes
 }
