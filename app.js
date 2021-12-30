@@ -16,11 +16,11 @@ mongoose
 const serverPort = process.env.PORT || 6650;
 
 app.use(
-  "/graphql",
+  "/api",
   graphqlHTTP({
     schema: schema,
     rootValue: schema.query,
-    graphiql: true
+    graphiql: false
   })
 );
 
