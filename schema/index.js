@@ -102,10 +102,10 @@ const Mutations = new GraphQLObjectType({
             type: patchNoteType,
             args: {
                 id: { type: new GraphQLNonNull(GraphQLID) },
-                title: { type: new GraphQLNonNull(GraphQLString) },
-                detail: { type: new GraphQLNonNull(GraphQLString) },
-                patchName: { type: new GraphQLNonNull(GraphQLString) },
-                author: { type: new GraphQLNonNull(GraphQLString) },
+                title: { type: GraphQLString },
+                detail: { type: GraphQLString },
+                patchName: { type: GraphQLString },
+                author: { type: GraphQLString },
                 tagId: { type: GraphQLID },
             },
             async resolve(parent, args) {
@@ -126,6 +126,7 @@ const Mutations = new GraphQLObjectType({
             args: {
                 name: { type: new GraphQLNonNull(GraphQLString) },
                 color: { type: new GraphQLNonNull(GraphQLString) },
+                createdAt: { type: new GraphQLNonNull(GraphQLString) },
             },
             async resolve(parent, args) {
                 return await noteTagsController._add(args)
@@ -135,8 +136,8 @@ const Mutations = new GraphQLObjectType({
             type: noteTagType,
             args: {
                 id: { type: new GraphQLNonNull(GraphQLID) },
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                color: { type: new GraphQLNonNull(GraphQLString) },
+                name: { type: GraphQLString },
+                color: { type: new GraphQLString },
             },
             async resolve(parent, args) {
                 return await noteTagsController._update(args)
