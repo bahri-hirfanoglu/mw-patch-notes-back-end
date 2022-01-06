@@ -20,6 +20,7 @@ const patchNoteType = new GraphQLObjectType({
     _id: { type: GraphQLID },
     title: { type: GraphQLString },
     detail: { type: GraphQLString },
+    author: {type: GraphQLString},
     patchName: { type: GraphQLString },
     createdAt: { type: GraphQLString },
     tagId: { type: GraphQLID },
@@ -89,6 +90,8 @@ const Mutations = new GraphQLObjectType({
                 title: { type: new GraphQLNonNull(GraphQLString) },
                 detail: { type: new GraphQLNonNull(GraphQLString) },
                 patchName: { type: new GraphQLNonNull(GraphQLString) },
+                author: { type: new GraphQLNonNull(GraphQLString) },
+                createdAt: { type: new GraphQLNonNull(GraphQLString) },
                 tagId: { type: GraphQLID },
             },
             async resolve(parent, args) {
@@ -102,6 +105,7 @@ const Mutations = new GraphQLObjectType({
                 title: { type: new GraphQLNonNull(GraphQLString) },
                 detail: { type: new GraphQLNonNull(GraphQLString) },
                 patchName: { type: new GraphQLNonNull(GraphQLString) },
+                author: { type: new GraphQLNonNull(GraphQLString) },
                 tagId: { type: GraphQLID },
             },
             async resolve(parent, args) {

@@ -1,9 +1,15 @@
 const express = require("express");
+const cors = require("cors");
 const {graphqlHTTP} = require("express-graphql");
 const app = express();
 const mongoose = require("mongoose");
 const schema = require("./schema");
 
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true,
+}))
 mongoose
   .connect("mongodb://localhost/blogmw-2021", { useNewUrlParser: true })
   .then(() => {
@@ -20,7 +26,7 @@ app.use(
   graphqlHTTP({
     schema: schema,
     rootValue: schema.query,
-    graphiql: false
+    graphiql: true
   })
 );
 

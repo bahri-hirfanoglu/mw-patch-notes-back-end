@@ -20,7 +20,7 @@ const getPatchNotes = async function () {
 };
 
 const deletePatchNote = async function (id) {
-  const result = await PatchNotes.findByIdAndRemove(id);
+  const result = await PatchNotes.findByIdAndDelete(id);
   return result;
 };
 

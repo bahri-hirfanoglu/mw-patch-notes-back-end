@@ -8,8 +8,7 @@ const patchNotesSchema = new mongoose.Schema(
     author: String,
     patchName: String,
     tagId: ObjectId,
-  },
-  { timestamps: true }
-);
+    createdAt: String
+  });
 
 module.exports = mongoose.model("PatchNotes", patchNotesSchema)
