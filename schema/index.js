@@ -54,7 +54,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     patchNote: {
       type: patchNoteType,
-      args: { id: { type: GraphQLID } },
+      args: { id: { type: GraphQLString } },
       async resolve(parent, args) {
         return await patchNoteController._get(args);
       },
@@ -137,7 +137,7 @@ const Mutations = new GraphQLObjectType({
             args: {
                 id: { type: new GraphQLNonNull(GraphQLID) },
                 name: { type: GraphQLString },
-                color: { type: new GraphQLString },
+                color: { type:  GraphQLString },
             },
             async resolve(parent, args) {
                 return await noteTagsController._update(args)

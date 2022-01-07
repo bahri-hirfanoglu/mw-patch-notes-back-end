@@ -6,7 +6,7 @@ const addPatchNote = async function (param) {
 };
 
 const getPatchNote = async function (id) {
-  const note = await PatchNotes.findById(id);
+  const note = await PatchNotes.findOne({patchName: id});
   return note;
 };
 

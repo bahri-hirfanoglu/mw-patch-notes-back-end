@@ -4,6 +4,7 @@ const {graphqlHTTP} = require("express-graphql");
 const app = express();
 const mongoose = require("mongoose");
 const schema = require("./schema");
+const loginRoutes = require("./routes/loginRoutes")
 
 app.use(cors())
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use(
   })
 );
 
+app.use('/login', loginRoutes);
 
 app.listen(serverPort, () => {
   console.log(`Node server is started! Listening port ${serverPort}`);
