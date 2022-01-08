@@ -9,11 +9,10 @@ const createdToken = (username) => {
 
 const post = (req, res) => {
   const { username, password } = req.body;
-  console.log(process.env.USERNAME)
   if (username == process.env.USERNAME && password == process.env.PASSWORD) {
     res.status(200).json({ token: createdToken(username) });
   } else {
-    res.status(401).send("username or password invalid!");
+    res.status(403).send("username or password invalid!");
   }
 };
 
