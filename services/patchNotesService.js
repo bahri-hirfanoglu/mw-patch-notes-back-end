@@ -29,11 +29,17 @@ const updatePatch = async function (id, param) {
   return result;
 };
 
+const searchPatch = async function(value) {
+  //{ $or [ {title: { $regex: '.*' + value + '.*' }} ]}
+  const result = await PatchNotes.find( { $or:[ {'title': { $regex: '.*' + value + '.*' }}, {'detail': { $regex: '.*' + value + '.*' }}]})
+  return result
+}
 module.exports = {
     addPatchNote,
     getPatchNote,
     getPatchNotes,
     deletePatchNote,
     updatePatch,
-    getTagNotes
+    getTagNotes,
+    searchPatch
 }

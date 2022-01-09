@@ -65,6 +65,13 @@ const RootQuery = new GraphQLObjectType({
         return await patchNoteController._gets();
       },
     },
+    searchNotes: {
+      type: new GraphQLList(patchNoteType),
+      args: { search: { type: GraphQLString } },
+      async resolve(parent, args) {
+        return await patchNoteController._search(args);
+      },
+    },
     noteTag: {
       type: noteTagType,
       args: { id: { type: GraphQLID } },
